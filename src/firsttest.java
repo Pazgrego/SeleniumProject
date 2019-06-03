@@ -18,7 +18,9 @@ public class FirstTest {
             search.get(0).click();
             search.get(0).sendKeys("security");
             search.get(0).sendKeys(Keys.ENTER);
-            
+
+        List<WebElement> Title = driver.findElements(By.xpath("//*[@class='repo-list']//h3"));
+        System.out.println(Title.get(0).getText());
 
     }
 }
