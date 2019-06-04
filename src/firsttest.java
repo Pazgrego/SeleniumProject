@@ -30,8 +30,8 @@ public class FirstTest {
 
             String descriptionText = "No Description";
            // List <WebElement> descriptionList = elementResult.findElements(By.cssSelector(".col-12.col-md-9.d-inline-block.text-gray.mb-2.pr-4"));
-            //List <WebElement> descriptionList = elementResult.findElements(By.xpath("//p[contains(@class, 'col-md-9')]"));
-            List <WebElement> descriptionList = elementResult.findElements(By.className("col-md-9"));
+            List <WebElement> descriptionList = elementResult.findElements(By.xpath(".//p[contains(@class, 'col-md-9')]"));
+           // List <WebElement> descriptionList = elementResult.findElements(By.className("col-md-9"));
 
             if(descriptionList.size() > 0){
               descriptionText = descriptionList.get(0).getText();
@@ -39,17 +39,32 @@ public class FirstTest {
 
             String tagsText = "No Tags";
             List<String> tagsList  = new ArrayList<>();
-            List <WebElement> elementsTagsList = elementResult.findElements(By.xpath(".//a[contains(@class, 'topic-tag')]"));
+            List<WebElement> elementsTagsList = elementResult.findElements(By.xpath(".//a[contains(@class, 'topic-tag')]"));
             if(elementsTagsList.size() > 0){
                 for(WebElement elementTags : elementsTagsList){
                     tagsList.add(elementTags.getAttribute("innerText"));
                 }
             }
 
-            WebElement time 
+            String time = elementResult.findElement(By.tagName("relative-time")).getAttribute("innerHTML");
 
-            System.out.println("title: " + title + " description: " + descriptionText);
+            String language = "No Language";
+            List <WebElement> elementLanguageList = elementResult.findElements(By.cssSelector("[itemprop = 'programmingLanguage']"));
+            if(elementLanguageList.size() > 0){
+                language = elementLanguageList.get(0).getText();
+
+            }
+
+            String stars = elementResult.findElement(By.cssSelector(".pl-2.pl-md-0.text-right.flex-auto.min-width-0")).getAttribute("innerText");
+
+            /*System.out.println();
+            System.out.println("title: " + title);
+            System.out.println("description: " + descriptionText);
             System.out.println("tags: " + tagsList);
+            System.out.println("time: " + time);
+            System.out.println("language: " + language);
+            System.out.println("stars: " + stars);
+            System.out.println();*/
         }
 
         Thread.sleep(2000);
