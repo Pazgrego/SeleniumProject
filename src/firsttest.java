@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -27,14 +29,27 @@ public class FirstTest {
             String title = elementResult.findElement(By.tagName("h3")).getText();
 
             String descriptionText = "No Description";
-            List <WebElement> descriptionList = elementResult.findElements(By.cssSelector(".col-12.col-md-9.d-inline-block.text-gray.mb-2.pr-4"));
+           // List <WebElement> descriptionList = elementResult.findElements(By.cssSelector(".col-12.col-md-9.d-inline-block.text-gray.mb-2.pr-4"));
+            //List <WebElement> descriptionList = elementResult.findElements(By.xpath("//p[contains(@class, 'col-md-9')]"));
+            List <WebElement> descriptionList = elementResult.findElements(By.className("col-md-9"));
 
             if(descriptionList.size() > 0){
               descriptionText = descriptionList.get(0).getText();
-             }
-           
+            }
+
+            String tagsText = "No Tags";
+            List<String> tagsList  = new ArrayList<>();
+            List <WebElement> elementsTagsList = elementResult.findElements(By.xpath(".//a[contains(@class, 'topic-tag')]"));
+            if(elementsTagsList.size() > 0){
+                for(WebElement elementTags : elementsTagsList){
+                    tagsList.add(elementTags.getAttribute("innerText"));
+                }
+            }
+
+            WebElement time 
 
             System.out.println("title: " + title + " description: " + descriptionText);
+            System.out.println("tags: " + tagsList);
         }
 
         Thread.sleep(2000);
