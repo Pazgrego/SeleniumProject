@@ -18,6 +18,8 @@ public class FirstTest {
         driver.get("https://github.com/");
         Thread.sleep(3000);
 
+        /*JSONObject sampleObject = new JSONObject();*/
+
         WebElement search = driver.findElements(By.className("header-search-input")).get(0);
         search.click();
         search.sendKeys("security");
@@ -65,10 +67,27 @@ public class FirstTest {
             System.out.println("language: " + language);
             System.out.println("stars: " + stars);
             System.out.println();*/
+
+
+         repoObj obj = new repoObj(title, descriptionText, tagsList, time, language, stars);
+         System.out.println();
+         System.out.println(obj.title);
+         System.out.println(obj.description);
+         System.out.println(obj.tags);
+         System.out.println(obj.time);
+         System.out.println(obj.language);
+         System.out.println(obj.stars);
+
+         List<WebElement> nextPage = driver.findElements(By.cssSelector("[rel='next']"));
+         nextPage.get(0).click();
+
         }
 
         Thread.sleep(2000);
         driver.quit();
+    }
+
+    private static class JSONObject {
     }
 }
 
